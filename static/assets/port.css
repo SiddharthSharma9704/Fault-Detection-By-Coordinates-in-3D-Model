@@ -1,0 +1,57 @@
+/* Hero styling for portfolio page */
+.portfolio-hero {
+    background: url('../assets/portfolio-bg.jpg') center/cover no-repeat;
+    height: 60vh;
+}
+
+.portfolio-section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.scenario-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 25px 30px;
+    margin-bottom: 30px;
+}
+
+.scenario-card h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.scenario-card p {
+    color: #444;
+    line-height: 1.6;
+}
+
+.portfolio-image {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.portfolio-image img {
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Back Button */
+.back-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+}
