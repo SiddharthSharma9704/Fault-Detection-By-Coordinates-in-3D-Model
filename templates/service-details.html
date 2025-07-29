@@ -5,6 +5,51 @@
     <title>Services</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .services-section {
+            background-color: #1a1a1a;
+            padding: 60px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .services-section h2 {
+            font-size: 36px;
+            color: #00ffcc;
+            margin-bottom: 40px;
+        }
+
+        .service-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 15px;
+            width: 280px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            color: #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -12,16 +57,56 @@
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/portfolio-details">About</a></li>
-            <li><a href="/service-details" class="active">Services</a></li>
+            <li><a href ="/service">Services</a></li>
             <li><a href="/predictor">Predictor</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
+
     <header class="hero">
         <div class="overlay">
             <h1>Our Services</h1>
             <p>Explore the services we offer to improve your 3D printing experience.</p>
         </div>
     </header>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2>What We Offer</h2>
+        <div class="service-cards">
+
+            <div class="service-card">
+                <h3>STL File Fault Detection</h3>
+                <p>Upload your STL files and get instant predictions on possible 3D printing faults using our trained machine learning model.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Automated STL Analysis</h3>
+                <p>We extract geometric features from 3D models like volume, surface area, triangles, and more — automatically and accurately.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Interactive Prediction Dashboard</h3>
+                <p>Our predictor page allows you to easily upload, visualize, and receive diagnostic results for your files in a friendly UI.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Real-Time Fault Classification</h3>
+                <p>Backed by machine learning, our system classifies faults in real-time, helping you prevent failed prints before they happen.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Responsive Web Interface</h3>
+                <p>Our web platform is built with responsive design in mind so it works great on desktops, tablets, and mobile devices.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Future Enhancements</h3>
+                <p>We plan to support G-code analysis, printer feedback integration, and deeper error correction suggestions in future updates.</p>
+            </div>
+
+        </div>
+    </section>
 </body>
 </html>
+ 

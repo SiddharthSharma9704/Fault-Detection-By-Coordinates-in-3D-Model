@@ -2,26 +2,182 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About</title>
+    <title>About - Print Guard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .about-section {
+            background-color: #1a1a1a;
+            padding: 60px 20px;
+            color: #fff;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-box {
+            background-color: #2a2a2a;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+        }
+
+        .about-box h2 {
+            color: #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        .about-box p {
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .about-box ul {
+            padding-left: 20px;
+        }
+
+        .about-box li {
+            margin-bottom: 8px;
+        }
+
+        .submitted-box {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: #00ffcc;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">PRINT GUARD</div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
-            <li><a href="/portfolio-details" class="active">About</a></li>
-            <li><a href="/service-details">Services</a></li>
+            <li><a href="/portfolio-details">About</a></li>
+            <li><a href ="/service">Services</a></li>
             <li><a href="/predictor">Predictor</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
-    <header class="hero">
-        <div class="overlay">
-            <h1>About Us</h1>
-            <p>Learn more about PRINT GUARD and our mission to enhance 3D printing reliability.</p>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-container">
+
+            <div class="about-box">
+                <h2>📄 Project Title: Fault Detection by Coordinates in 3D Model</h2>
+                <p>This project aims to automatically detect faults in 3D models by analyzing vibration sensor data and coordinate data from .stl files using machine learning.</p>
+            </div>
+
+            <div class="about-box">
+                <h2>1. Introduction</h2>
+                <p>The main objective is to classify whether a fault is present at given coordinate points of a 3D object using supervised ML models trained on data collected from an ADXL345 sensor.</p>
+            </div>
+
+            <div class="about-box">
+                <h2>2. Dataset</h2>
+                <ul>
+                    <li><strong>X-direction:</strong> X-axis vibration/coordinate value</li>
+                    <li><strong>Y-direction:</strong> Y-axis vibration/coordinate value</li>
+                    <li><strong>Z-direction:</strong> Z-axis vibration/coordinate value</li>
+                    <li><strong>Error_found:</strong> Indicates if a fault was found (0 = No, 1 = Yes)</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>3. Libraries & Technologies</h2>
+                <ul>
+                    <li><strong>Python:</strong> pandas, numpy, matplotlib, seaborn, scikit-learn, xgboost, imblearn, numpy-stl, pickle</li>
+                    <li><strong>Deployment:</strong> Flask, HTML templates</li>
+                    <li><strong>Tools:</strong> Jupyter Notebook / Python IDE</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>4. Data Preprocessing</h2>
+                <ul>
+                    <li>Handled missing values & outliers using median replacement</li>
+                    <li>Visualized distributions (KDE, scatter plots)</li>
+                    <li>Balanced data using ADASYN</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>5. Exploratory Data Analysis</h2>
+                <ul>
+                    <li>KDE plots, scatter plots, violin plots</li>
+                    <li>Heatmaps for correlation</li>
+                    <li>Boxplots to detect/treat outliers</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>6. Model Training</h2>
+                <p>Tested models: Logistic Regression, Random Forest, XGBoost, Naive Bayes, KNN, SVC</p>
+                <p>Hyperparameter tuning via GridSearchCV</p>
+            </div>
+
+            <div class="about-box">
+                <h2>7. Model Evaluation</h2>
+                <ul>
+                    <li>Classification report, accuracy, F1 score, ROC AUC</li>
+                    <li>Compared models using bar plots</li>
+                    <li>Saved best model as <code>model.pkl</code></li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>8. Backend Deployment</h2>
+                <ul>
+                    <li>Flask routes for homepage, predictor, prediction result</li>
+                    <li>STL upload & coordinate extraction</li>
+                    <li>Model prediction and result display</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>9. STL File Handling</h2>
+                <ul>
+                    <li>Files saved temporarily with UUID</li>
+                    <li>Coordinates extracted using <code>numpy-stl</code></li>
+                    <li>Predictions shown for first 1000 points</li>
+                    <li>File deleted after use</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>10. Results</h2>
+                <p>Each point in the STL file is predicted as "Fault Detected" or "No Fault". Results shown in table format for quick feedback.</p>
+            </div>
+
+            <div class="about-box">
+                <h2>11. Future Improvements</h2>
+                <ul>
+                    <li>Expand dataset with more real-world readings</li>
+                    <li>3D visualization of faulty regions</li>
+                    <li>User login/auth system</li>
+                    <li>Cloud deployment for scalability</li>
+                </ul>
+            </div>
+
+            <div class="about-box">
+                <h2>✅ Conclusion</h2>
+                <p>This project demonstrates an end-to-end ML pipeline for STL-based fault detection with a user-friendly web interface.</p>
+            </div>
+
+            <div class="about-box submitted-box">
+                Submitted By:<br>
+                Siddharth Sharma (Team Leader)<br>
+                Abeer Kumar (Member)<br>
+                Keertan Gupta (Member)<br>
+                ANAND INTERNATIONAL COLLEGE OF ENGINEERING, JAIPUR
+            </div>
+
         </div>
-    </header>
+    </section>
 </body>
 </html>

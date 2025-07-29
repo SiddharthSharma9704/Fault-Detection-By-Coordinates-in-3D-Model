@@ -14,11 +14,16 @@ model = pickle.load(open("model.pkl", "rb"))
 def home():
     return render_template("index.html")
 
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 @app.route("/portfolio-details")
+
 def portfolio():
     return render_template("portfolio-details.html")
 
-@app.route("/service-details")
+@app.route("/service")
 def service():
     return render_template("service-details.html")
 
