@@ -1,250 +1,113 @@
-📄 Project Title: Fault Detection by Coordinates in 3D Model
+# Fault Detection by Coordinates in 3D Model
+
+## 📌 Project Overview
+This project detects **faults in 3D models** by analyzing vibration sensor data and 3D coordinate data extracted from `.stl` files.  
+Using supervised machine learning models trained on vibration readings from an **ADXL345 sensor**, the system classifies whether a given coordinate point contains a fault.
+
+The project also includes a **Flask-based web application** where users can upload `.stl` files and receive predictions for each coordinate.
 
-1. Introduction
-This project aims to automatically detect faults in 3D models by analyzing vibration sensor data and coordinate data extracted from .stl files. The main objective is to classify whether a fault is present at given coordinate points of a 3D object. This is achieved using multiple supervised machine learning models trained on vibration data collected through an ADXL345 sensor.
+---
 
-2. Dataset
-The dataset used in this project is named ADXL345_SensorData.csv, containing four columns:
-X-direction: X-axis vibration/coordinate value
+## 📂 Dataset
+**File:** `ADXL345_SensorData.csv`  
 
+**Columns:**
+- **X-direction** → X-axis vibration/coordinate value  
+- **Y-direction** → Y-axis vibration/coordinate value  
+- **Z-direction** → Z-axis vibration/coordinate value  
+- **Error_found** → Fault presence (`1` = Fault, `0` = No Fault)  
 
-Y-direction: Y-axis vibration/coordinate value
+---
 
+## 🛠 Libraries & Technologies
+- **Python** (pandas, numpy, scikit-learn, matplotlib, seaborn, xgboost, imblearn)
+- **Flask** for backend deployment
+- **numpy-stl** for `.stl` file processing
+- **pickle** for model saving/loading
+- **HTML/CSS** for frontend templates
 
-Z-direction: Z-axis vibration/coordinate value
+---
 
+## 🔍 Data Preprocessing
+- Checked for missing values
+- Visualized data distributions (KDE plots, scatter plots, violin plots, heatmaps)
+- Removed/replaced outliers using a percentile-based median replacement
+- Balanced dataset using **ADASYN** (to handle class imbalance)
 
-Error_found: Indicates if an error (fault) was found at those coordinates (yes or no).
+---
 
+## 📊 Exploratory Data Analysis (EDA)
+- KDE plots for X, Y, Z directions
+- Scatter plot of X vs Y with fault coloring
+- Violin plots for vibration vs fault status
+- Heatmap for correlation
+- Boxplots before/after outlier removal
 
-The target variable Error_found is encoded as 0 for no fault and 1 for fault detected.
+---
 
+## 🤖 Model Training
+Tested multiple ML models:
+- Logistic Regression
+- Random Forest Classifier
+- XGBoost Classifier
+- Naive Bayes
+- K-Nearest Neighbors (KNN)
+- Support Vector Classifier (SVC)
 
+Performed **GridSearchCV** hyperparameter tuning for Random Forest, SVC, KNN, and XGBoost.  
+Best-performing model was saved as **`model.pkl`**.
 
-3. Libraries and Technologies Used
-Python Libraries:
+---
 
+## 📈 Model Evaluation
+Evaluated using:
+- Accuracy Score
+- F1 Score
+- Precision & Recall
+- ROC AUC Score
 
-pandas and numpy for data manipulation
+Created comparative bar plots for Accuracy and F1 scores.
 
+---
 
-matplotlib and seaborn for visualization
+## 🌐 Web Deployment
+Flask Application Features:
+- Homepage for file upload
+- `/predict` route:
+  - Accepts `.stl` files
+  - Extracts 3D coordinates using `numpy-stl`
+  - Predicts fault/no fault using trained model
+  - Displays first 1000 predictions
 
+Uploaded `.stl` files are deleted after processing to save space.
 
-scikit-learn for model training and evaluation
+---
 
+📁 project/
+├── app.py # Flask backend                                                                                                   
+├── test.py # Standalone prediction script                                                                                   
+├── model.pkl # Trained ML model                                                                                             
+├── ADXL345_SensorData.csv # Dataset                                                                                         
+├── templates/ # HTML frontend files                                                                                         
+├── static/ # CSS/JS files                                                                                                   
+├── requirements.txt # Required Python packages                                                                              
+└── README.md # Documentation                                                                                                                                                                                                                                                  
 
-xgboost for XGBoost classifier
+---
 
+## 🚀 Installation & Usage
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/yourusername/3D-Fault-Detection.git
+cd 3D-Fault-Detection
 
-imblearn for ADASYN oversampling
+pip install -r requirements.txt
+python app.py
 
 
-Flask for web deployment
 
+```
 
-numpy-stl (stl module) for reading .stl files
 
-
-pickle for model saving and loading
-
-
-Tools:
-
-
-Jupyter Notebook / Python IDE for development
-
-
-Flask framework for backend web application
-
-
-HTML templates for frontend (upload form, result page)
-
-
-
-
-
-
-
-4. Data Preprocessing
-Key steps:
-Checked for missing values and verified data integrity.
-
-
-Visualized distributions using KDE plots and scatter plots to understand vibration patterns.
-
-
-Detected and replaced outliers with median values using a custom percentile-based function.
-
-
-Balanced the dataset using ADASYN to handle class imbalance.
-
-
-
-
-
-5. Exploratory Data Analysis
-Various plots were created:
-KDE plots for X, Y, Z directions to check vibration distributions.
-
-
-Scatter plot for X-direction vs Y-direction colored by Error_found.
-
-
-Violin plot to visualize distribution differences by Error_found.
-
-
-Heatmap to see correlations between vibration directions.
-
-
-Boxplots to detect outliers before and after treatment.
-
-
-
-
-
-6. Model Training and Selection
-Multiple supervised models were tested:
-Logistic Regression
-
-
-Random Forest Classifier
-
-
-XGBoost Classifier
-
-
-Naive Bayes
-
-
-K-Nearest Neighbors (KNN)
-
-
-Support Vector Classifier (SVC)
-
-
-Hyperparameter tuning was done using GridSearchCV for Random Forest, SVC, KNN, and XGBoost.
-
-
-7. Model Evaluation
-Models were evaluated using:
-
-
-Classification Report (Precision, Recall)
-
-
-Accuracy Score
-
-
-F1 Score
-
-
-ROC AUC Score
-
-
-Comparative bar plots were created to compare F1 Scores and Accuracy Scores across models.
-
-
-The best model (highest accuracy/F1) was selected and saved as model.pkl.
-8. Backend Deployment
-The Flask app handles:
-A homepage and additional static pages.
-
-
-A /predictor route for the prediction form.
-
-
-A /predict route which:
-
-
-Accepts .stl file uploads.
-
-
-Reads the .stl file using numpy-stl.
-
-
-Extracts all 3D coordinates.
-
-
-Runs predictions using the saved model.
-
-
-Displays the first 1000 predictions with x, y, z coordinates and whether a fault is detected.
-
-
-
-9. STL File Handling
-Uploaded .stl files are saved with a unique filename.
-
-
-Coordinates are extracted using mesh.Mesh.from_file(filepath).
-
-
-Coordinates are reshaped to feed directly into the trained model.
-
-
-After prediction, the uploaded file is deleted automatically to keep the server clean.
-
-
-
-
-10. Result
-Predictions show each coordinate’s status:
-
-
-"Fault Detected" if the model predicts a fault.
-
-
-"No Fault" if no fault is detected.
-
-
-Users can visually verify results on the web interface.
-
-
-
-11. Future Improvements
-Improve dataset size with more sensor readings.
-
-
-Integrate visualization to highlight faulty coordinates on the 3D model.
-
-
-Add user authentication for secure file uploads.
-
-
-Deploy on a cloud platform for wider access.
-
-
-
-
-
-
-
-
-
-✅ Conclusion
-This project demonstrates a complete pipeline from sensor data collection to machine learning model deployment for automatic fault detection using vibration data and 3D coordinates. The solution provides an accessible web interface for users to upload .stl files and receive instant feedback on possible faults.
-
-Attachments:
-app.py: Flask application backend
-
-
-test.py: Standalone prediction script
-
-
-model.pkl: Trained model file
-
-
-HTML templates: (not shared here)
-
-
-
-Submitted By:
-Siddharth Sharma(Team Leader)
-Abeer Kumar(Member)
-KeertanGupta(Member)
-ANAND INTERNATIONAL COLLEGE OF ENGINEERING,JAIPUR
-
-End of Document
-
+demo video link:-  https://drive.google.com/drive/folders/14-1T5GuMW8ydx0D-1ZsOEeLDIk3y02vV
 
